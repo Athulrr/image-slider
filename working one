@@ -100,6 +100,8 @@
 
   <script>
     let currentIndex = 0;
+    let autoSlideInterval;
+const slideIntervalTime = 5000; 
 
     function updateBackgroundImage(index) {
       const slides = document.querySelectorAll('.slide');
@@ -123,9 +125,23 @@
       currentIndex = (currentIndex < document.querySelectorAll('.slide').length - 1) ? currentIndex + 1 : 0;
       showSlide(currentIndex);
     }
+    function startAutoSlide() {
+    autoSlideInterval = setInterval(nextSlide, slideIntervalTime);
+}
+
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+function resetAutoSlide() {
+    stopAutoSlide();
+    startAutoSlide();
+}
+    
 
     // Initial display
     showSlide(currentIndex);
+    startAutoSlide();
   </script>
 </body>
 </html>
